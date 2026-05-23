@@ -1,0 +1,65 @@
+import random
+
+inputchoice = int(input("Type 1 for Rock \nType 2 for Paper \nType 3 for Scissors \n"))
+Rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+Paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+Scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+gameimg = [Rock, Paper, Scissors]
+
+if inputchoice in [1]:
+    print(f"You choose Rock\n{Rock}")
+elif inputchoice in [2]:
+    print(f"You choose Paper\n{Paper}")
+elif inputchoice in [3]:
+    print(f"You choose Scissors\n{Scissors}")
+
+if inputchoice in [1, 2, 3]:
+    option = ["Rock", "Paper", "Scissors"]
+    choicecompute = random.choice(option)
+    imageindex = option.index(choicecompute)
+    print(f"The computer choose {choicecompute}\n {gameimg[imageindex]}")
+else:
+    print("You did not chose to play the game :C")
+    exit()
+
+if inputchoice - 1 == imageindex:
+    print("Its a tie!") 
+
+if inputchoice in [1] and choicecompute in ["Paper"]:
+    print("You lost! Paper beats Rock")
+if inputchoice in [1] and choicecompute in ["Scissors"]:
+    print("You Won! Rock beats Scissors")
+
+if inputchoice in [2] and choicecompute in ["Rock"]:
+    print("You Won! Paper beats Rock")
+if inputchoice in [2] and choicecompute in ["Scissors"]:
+    print("You lost! Scissors beats Paper")
+
+if inputchoice in [3] and choicecompute in ["Rock"]:
+    print("You lost! Rock beats Scissors")
+if inputchoice in [3] and choicecompute in ["Paper"]:
+    print("You Won! Scissors beats Paper")
+

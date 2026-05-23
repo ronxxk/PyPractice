@@ -1,0 +1,20 @@
+print("Welcome to the tip calculator \n")
+
+tip = float(input("what percentage tip would you like to give? 10, 12, or 15? \n"))
+if tip < 0:
+    print("tip cant be negative")
+    exit()
+
+bill = float(input("what was the total bill? \n"))
+
+people = int(input("how many people to split the bill? \n"))
+if people <= 0:
+    print("there should be atleast 1 person")
+    exit()
+
+tip_total = float((tip/100) * bill)
+tipandbill = tip_total + bill
+tipperperson = tipandbill/people
+print(f"tip is {tip_total} \n Total bill is {tipandbill} \n Tip per head is {round(tipperperson, 2)}")
+
+
