@@ -1,0 +1,101 @@
+import random
+word_list = ["aardvark", "baboon", "camel"]
+stages = [r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+choose_word = random.choice(word_list)
+print(choose_word)
+hypen = "" 
+
+
+for word in choose_word:
+    hypen += "_"
+print(hypen)
+
+game_over = False
+correct_letters = []
+life = 6
+while not game_over:
+    letter = (input("Guess The Word! ")).lower()
+
+    hypen_answer = ""
+    for word in choose_word:
+
+        if word == letter:
+            hypen_answer += word
+            correct_letters.append(letter)
+        elif word in correct_letters:
+            hypen_answer += word
+        else:
+            hypen_answer += "_"
+     
+
+    if letter not in choose_word:
+        life -= 1
+        
+        if life == 0:
+            print("you lost!")
+            exit()
+        print(life)
+    print(stages[life])
+
+    print(hypen_answer)
+    if "_" not in hypen_answer:
+        game_over = True
+        print("You win.")
+    
+
