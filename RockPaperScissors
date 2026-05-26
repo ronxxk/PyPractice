@@ -1,32 +1,7 @@
 import random
 
 inputchoice = int(input("Type 1 for Rock \nType 2 for Paper \nType 3 for Scissors \n"))
-Rock = '''
-    _______
----'   ____)
-      (_____)
-      (_____)
-      (____)
----.__(___)
-'''
-
-Paper = '''
-    _______
----'   ____)____
-          ______)
-          _______)
-         _______)
----.__________)
-'''
-
-Scissors = '''
-    _______
----'   ____)____
-          ______)
-       __________)
-      (____)
----.__(___)
-'''
+from art import Rock, Paper, Scissors
 gameimg = [Rock, Paper, Scissors]
 
 if inputchoice in [1]:

@@ -1,0 +1,17 @@
+def calculate_love_score(name1, name2):
+    common_true = 0
+    common_love = 0
+    name = str(name1 + name2).lower()
+
+    for letter in name:
+        if letter == "t" or letter == "r" or letter == "u" or letter == "e":
+            common_true += 1
+        if letter == "l" or letter == "o" or letter == "v" or letter == "e":
+            common_love += 1
+    print(str(common_true) + str(common_love))
+    
+
+name1 = str(input("Enter your name\n")).lower()
+name2 = str(input("Enter their name\n")).lower()
+calculate_love_score(name1, name2)
+        
