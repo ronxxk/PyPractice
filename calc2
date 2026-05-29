@@ -1,0 +1,41 @@
+from art import calc
+def add(n1, n2):
+    return n1 + n2
+def sub(n1, n2):
+    return n1 - n2
+def multiply(n1, n2):
+    return n1 * n2
+def divide(n1, n2):
+    return n1 / n2
+
+operator = {
+    "+": add,
+    "-": sub,
+    "*": multiply,
+    "/": divide,
+}
+
+
+def calculate():
+    print(calc)
+    on = True
+    num1 = float(input("Enter the first number\n"))
+    while on:
+        num2 = float(input("Enter the second number\n"))
+        for element in operator:
+            print(f"{element}")
+        choice = input("Choose and operation: + - * / \n")
+        answer = operator[choice](num1, num2)
+        print(f"{num1} {choice} {num2} = {answer}\n")
+        continue_op = str(input("Do you wana continue with the last result? Y/N or None to stop \n").lower())
+        if continue_op == "y":
+            num1 = answer
+            print("\n" * 20)
+        elif continue_op == "n":
+            print("\n" * 20)
+            calculate()
+        elif continue_op == "None":
+            on = False
+
+calculate()
+
