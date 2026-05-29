@@ -1,0 +1,49 @@
+import random
+from art import hammer
+
+items_to_auction = {
+    "TV": random.randint(100, 150),
+    "Guitar": random.randint(200,250),
+    "Vintage vase": random.randint(250, 1000),
+}
+
+
+
+def auction():
+    result = {}
+    bidder_bid = {}
+    price_item = []
+    for item, price in items_to_auction.items():
+        print(hammer)
+        print(f"Item to auction is {item}")
+        price_item.append(price)
+        bid_dic = {}
+        on = True
+        fundsreamaining = {}
+        while on:
+            starting_funds = 1000
+            name = str(input("What is your name? \n"))
+            bid = int(input("What is your bid \n"))
+            bid_dic[name] = bid
+            question = (input("Is there another bid \n").lower())
+            if question == "no":
+                highest_bid = max(bid_dic, key=bid_dic.get)
+                bidder_bid.update({highest_bid: bid_dic.get(highest_bid)})
+                starting_funds -= bid_dic.get(highest_bid)
+                on = False
+            else:
+                print("\n" * 20)
+        result[item] = {
+        "winner": highest_bid,
+        "bid": bid_dic.get(highest_bid),
+        "amount_remain": starting_funds,
+        "price": price
+        }
+    return result
+
+#def calculat_winner():
+    auction()
+
+
+
+print(auction())
