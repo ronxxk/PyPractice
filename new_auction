@@ -11,39 +11,49 @@ items_to_auction = {
 
 def auction():
     result = {}
-    bidder_bid = {}
-    price_item = []
+
     for item, price in items_to_auction.items():
         print(hammer)
         print(f"Item to auction is {item}")
-        price_item.append(price)
+        print(f"Starting price: {price}")
+
         bid_dic = {}
         on = True
-        fundsreamaining = {}
+
         while on:
-            starting_funds = 1000
-            name = str(input("What is your name? \n"))
-            bid = int(input("What is your bid \n"))
-            bid_dic[name] = bid
-            question = (input("Is there another bid \n").lower())
+            name = input("What is your name?\n").strip()
+            bid = int(input("What is your bid?\n"))
+
+            # keep highest bid of same person for this item
+            if name in bid_dic:
+                if bid > bid_dic[name]:
+                    bid_dic[name] = bid
+            else:
+                bid_dic[name] = bid
+
+            question = input("Is there another bid? (yes/no)\n").lower()
+
             if question == "no":
-                highest_bid = max(bid_dic, key=bid_dic.get)
-                bidder_bid.update({highest_bid: bid_dic.get(highest_bid)})
-                starting_funds -= bid_dic.get(highest_bid)
+                highest_bidder = max(bid_dic, key=bid_dic.get)
+                highest_bid = bid_dic[highest_bidder]
+
+                result[item] = {
+                    "winner": highest_bidder,
+                    "bid": highest_bid,
+                    "price": price,
+                    "profit": highest_bid - price
+                }
                 on = False
             else:
                 print("\n" * 20)
-        result[item] = {
-        "winner": highest_bid,
-        "bid": bid_dic.get(highest_bid),
-        "amount_remain": starting_funds,
-        "price": price
-        }
+
     return result
 
-#def calculat_winner():
-    auction()
+
+def calculat_winner(auction):
+    starting_funds = 1000
 
 
 
-print(auction())
+
+#print(auction())

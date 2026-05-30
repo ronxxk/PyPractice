@@ -1,0 +1,31 @@
+from art import blackjack
+import random
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+Player_cards = []
+dealer_cards = []
+game = input("Do you wanna play a game of black jack? y/n \n").lower()
+if game == "y":
+    print("\n"*20)
+    print(blackjack)
+    gameison = True
+    x = 2
+    while gameison:
+        Player_cards += random.choices(cards, k=x)
+        score = sum(Player_cards)
+        print(f"Your starting cards are: {Player_cards}\nYour score is: {score}")
+        if score >= 21:
+            gameison = False
+        else:
+            choice = input("Do you want an another card? y/n\n").lower
+            if choice == "n":
+                gameison = False
+            else:
+                x = 1
+
+
+
+    
+else:
+    exit()
+
