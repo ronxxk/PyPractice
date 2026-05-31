@@ -1,31 +1,77 @@
-from art import blackjack
 import random
+from art import blackjack
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-Player_cards = []
-dealer_cards = []
-game = input("Do you wanna play a game of black jack? y/n \n").lower()
-if game == "y":
-    print("\n"*20)
+
+
+def deal_cards():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    card = random.choice(cards)
+    return card
+
+
+def calculate_score(cards):
+    if sum(cards) == 21 and len(cards) == 2:
+        return 0
+
+    if 11 in cards and sum(cards) > 21:
+        cards.remove(11)
+        cards.append(1)
+
+    return sum(cards)
+
+def compare(u_score, d_score):
+    """Compares the user score u_score against the computer score c_score."""
+    if u_score == d_score:
+        return "Draw 🙃"
+    elif d_score == 0:
+        return "Lose, opponent has Blackjack 😱"
+    elif u_score == 0:
+        return "Win with a Blackjack 😎"
+    elif u_score > 21:
+        return "You went over. You lose 😭"
+    elif d_score > 21:
+        return "Opponent went over. You win 😁"
+    elif u_score > d_score:
+        return "You win 😃"
+    else:
+        return "You lose 😤"
+
+def play_game():
     print(blackjack)
-    gameison = True
-    x = 2
-    while gameison:
-        Player_cards += random.choices(cards, k=x)
-        score = sum(Player_cards)
-        print(f"Your starting cards are: {Player_cards}\nYour score is: {score}")
-        if score >= 21:
-            gameison = False
+    user_cards = []
+    dealer_cards = []
+    game_over = False
+
+    for elements in range(2):
+        user_cards.append(deal_cards())
+        dealer_cards.append(deal_cards())
+
+    while not game_over:
+        user_score = calculate_score(user_cards)
+        dealer_score = calculate_score(dealer_cards)
+        print(f"Your cards are: {user_cards}\nYour score is: {user_score}")
+        print(f"Dealer's first card is: {dealer_cards[0]}")
+
+
+        if dealer_score == 0 or user_score == 0 or user_score > 21:
+            game_over = True
+            exit()
         else:
-            choice = input("Do you want an another card? y/n\n").lower
-            if choice == "n":
-                gameison = False
+            choice = input("Do you want another card? y/n\n").lower()
+            if choice == "y":
+                user_cards.append(deal_cards())
             else:
-                x = 1
+                game_over = True
+
+    while dealer_score != 0 and dealer_score <= 17:
+        dealer_cards.append(deal_cards())
+        dealer_score = calculate_score(dealer_cards)
 
 
+    print(f"Your cards were: {user_cards}\nYour score was: {user_score}")
+    print(f"Dealer's cards were: {dealer_cards}\nDealer's score was: {dealer_score}")
+    print(compare(user_score, dealer_score))
 
-    
-else:
-    exit()
-
+while input("Do you wanna play a game of Blackjack? y/n\n") == "y":
+    print("\n" * 30)
+    play_game()
