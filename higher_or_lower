@@ -1,0 +1,70 @@
+import random
+from gamedata import dataforgame
+from art import HnL
+from art import vs
+
+on = True
+scored = 0
+
+
+def choose():
+    compare = random.choice(dataforgame)
+    against = random.choice(dataforgame)
+
+    #data for compare
+    x = compare['name']
+    y = compare['description'] 
+    z = compare['country'] 
+    a = compare['follower_count']
+
+    #data for against
+    m = against['name']
+    n = against['description']
+    o = against['country'] 
+    b = against['follower_count']
+
+    
+    return x, y, z, a, m, n, o, b
+
+def game(x, y, z, a, m, n, o, b):
+    print(HnL)
+    print(f"Compare A: {x} is a {y} from {z}\n")
+    print(vs)
+    print(f"Against B: {m} is a {n} from {o}\n")
+    inpu = str(input("Who has more followers? Type 'A' or 'B': ")).lower()
+    return inpu
+
+def compare(a, b, inpu):
+    if a > b and inpu != "a":
+        return("wrong")
+    elif a < b and inpu != "b":
+        return("wrong")
+    else:
+        return("right")
+
+
+
+def score(results):
+    global scored
+
+    if results == "wrong":
+
+        scored -= 1
+    else:
+
+        scored += 1
+
+    return scored
+
+while on:
+
+    data = choose()  #this is new!
+    inpu = game(*data)  #this is new!
+    result = compare(data[3], data[7], inpu)  # a=data[3], b=data[7] #this is new!
+
+    print(f"You are {result}!\n")
+    game_points = (score(result))
+
+    print(f"Your final score is: {game_points}")
+    if game_points <= 0:
+        on = False
