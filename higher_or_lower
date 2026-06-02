@@ -3,13 +3,14 @@ from gamedata import dataforgame
 from art import HnL
 from art import vs
 
-on = True
-scored = 0
 
 
-def choose():
-    compare = random.choice(dataforgame)
+def choose(previous=None):
     against = random.choice(dataforgame)
+    compare = previous if previous else random.choice(dataforgame)
+
+    while against == compare:
+        against = random.choice(dataforgame)
 
     #data for compare
     x = compare['name']
@@ -24,9 +25,9 @@ def choose():
     b = against['follower_count']
 
     
-    return x, y, z, a, m, n, o, b
+    return x, y, z, a, m, n, o, b, against
 
-def game(x, y, z, a, m, n, o, b):
+def game(x, y, z, a, m, n, o, b, against):
     print(HnL)
     print(f"Compare A: {x} is a {y} from {z}\n")
     print(vs)
@@ -56,15 +57,25 @@ def score(results):
 
     return scored
 
+on = True
+scored = 0
+next_compare = None
+
 while on:
 
-    data = choose()  #this is new!
+    data = choose(previous=next_compare)  #this is new!
     inpu = game(*data)  #this is new!
     result = compare(data[3], data[7], inpu)  # a=data[3], b=data[7] #this is new!
 
     print(f"You are {result}!\n")
-    game_points = (score(result))
+    game_points = score(result)
+    if game_points <= 0:
+        game_points == 0
+  
 
     print(f"Your final score is: {game_points}")
-    if game_points <= 0:
+
+    if game_points == 0:
         on = False
+    else:
+        next_compare = data[-1]
