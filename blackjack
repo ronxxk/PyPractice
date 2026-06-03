@@ -55,12 +55,11 @@ def play_game():
 
         if dealer_score == 0 or user_score == 0 or user_score > 21:
             game_over = True
-            exit()
         else:
             choice = input("Do you want another card? y/n\n").lower()
             if choice == "y":
                 user_cards.append(deal_cards())
-            else:
+            else: 
                 game_over = True
 
     while dealer_score != 0 and dealer_score <= 17:
