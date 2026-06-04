@@ -19,11 +19,11 @@ on = True
 last_digit = None
 while on:
     if last_digit == None:
-       c = int(input("Type the 1st no\n"))
+       c = float(input("Type the 1st no\n"))
     else:
        c = last_digit
     
-    d = int(input("Type the 2nd no\n"))
+    d = float(input("Type the 2nd no\n"))
     result = calculate(c, d)
     if result is not None:
         print(result)
