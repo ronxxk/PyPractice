@@ -11,7 +11,17 @@ def rand_color():
     y = random.random()
     z = random.random()
     return x, y, z
+
+def spirograph(heading_dist):
     
+    for s in range(int(360 / heading_dist)):
+        heading = jimmy.heading()
+        jimmy.color(rand_color())
+        jimmy.circle(50)
+        jimmy.setheading(heading + heading_dist)
+
+spirograph(20)
+
     
 for i in range(3, 6):
     right_ = 360/i
@@ -23,7 +33,7 @@ for i in range(3, 6):
 
 angle = [0 , 90, 180, 270]
 
-for i in range(500):
+for i in range(300):
     
     steps = int(random.random() * 100)
 
@@ -31,5 +41,6 @@ for i in range(500):
     
     jimmy.setheading(random.choice(angle))
     jimmy.fd(steps)
-    
+
+
 turtle.exitonclick()

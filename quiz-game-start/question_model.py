@@ -4,3 +4,5 @@ class Question:
         self.text = question
         self.answer = answer
     
+# new_q = Question("is earth falt?", "False")
+# print(new_q.text)
