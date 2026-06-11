@@ -14,6 +14,7 @@ class Snake:
     def __init__(self):
         self.seg = []
         self.create_snake()
+        self.head = self.seg[0]
         
     def create_snake(self):
         # Start at the center and build the initial body moving left
@@ -29,6 +30,15 @@ class Snake:
         snake_segment.color(color.get_random_color())
         snake_segment.goto(position)  # Expects a tuple like (x, y)
         self.seg.append(snake_segment) 
+       
+    def reset(self):
+        for seg in self.seg:
+            seg.goto(1000,1000)
+            
+        self.seg.clear()
+        self.create_snake()
+        self.head = self.seg[0]
+
             
     def extend(self):      
         # Pass the position of the very last segment to add_seg
@@ -41,20 +51,20 @@ class Snake:
             ycor = self.seg[segn - 1].ycor()
             self.seg[segn].goto(xcor, ycor)
         
-        self.seg[0].fd(DIST)
+        self.head.fd(DIST)
         
     def up(self):
-        if self.seg[0].heading() != DOWN:
-            self.seg[0].setheading(UP)
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
         
     def down(self):
-        if self.seg[0].heading() != UP:
-            self.seg[0].setheading(DOWN)
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
     
     def lft(self):
-        if self.seg[0].heading() != RGT:
-            self.seg[0].setheading(LFT)
+        if self.head.heading() != RGT:
+            self.head.setheading(LFT)
             
     def rgt(self):
-        if self.seg[0].heading() != LFT:
-            self.seg[0].setheading(RGT)
+        if self.head.heading() != LFT:
+            self.head.setheading(RGT)
