@@ -21,10 +21,11 @@ while len(guessd) < 50:
     answer_box = screen.textinput(title=f"{len(guessd)}/50 correct! Guess the state", prompt="type the state name").title()
 
     if answer_box == "Exit":
-        missing_states = []
-        for state in list_states:
-            if state not in guessd:
-                missing_states.append(state)
+        missing_states = [state for state in list_states if state not in guessd]
+        # missing_states = []
+        # for state in list_states:
+        #     if state not in guessd:
+        #         missing_states.append(state)
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         print(missing_states)
