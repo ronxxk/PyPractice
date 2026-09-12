@@ -1,6 +1,8 @@
 from tkinter import *
+from tkinter import messagebox
 import random
 import string
+import pyperclip
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 all_nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ]
@@ -18,17 +20,26 @@ def gene():
     entr += "".join(passs)
     shuffled_text = "".join(random.sample(entr, len(entr)))
     pass_entry.insert(0,(shuffled_text))
+    pyperclip.copy(shuffled_text)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     web = web_entry.get()
     ema = ema_entry.get()
     pas = pass_entry.get()
-    with open("passwordmanager/output.txt", "a", encoding="utf-8") as data_file:
-        data_file.write(f"{web} {ema} {pas}\n")
-        web_entry.delete(0, END)
-        pass_entry.delete(0, END)
-        web_entry.delete(0, END)
+    
+    
+    if len(web) != 0 or len(pas) != 0:
+        ok = messagebox.askokcancel(title=web, message=f"These are the details entered: \nEmail: {ema}" f"\nPassword: {pas} \nIs it ok to save?")
+            
+        if ok == True:
+            with open("passwordmanager/output.txt", "a", encoding="utf-8") as data_file:
+                data_file.write(f"{web} {ema} {pas}\n")
+                web_entry.delete(0, END)
+                pass_entry.delete(0, END)
+                web_entry.delete(0, END)
+    else:
+        messagebox.showerror(title="Error", message=f"You left some fields empty. Please fill them to proceed.")    
         
 # ---------------------------- UI SETUP ------------------------------- #
 
