@@ -4,7 +4,6 @@ from tkinter import messagebox
 import pandas as pd
 
 window = Tk()
-window.config(padx=50, pady=50)
 img_bg = PhotoImage(file="flashcardapp/images/card_back.png")
 img_ft = PhotoImage(file="flashcardapp/images/card_front.png")
 cross = PhotoImage(file="flashcardapp/images/right.png")
@@ -23,7 +22,7 @@ def word_f():
 x = 0
 def word_e():
     global x
-    listword = wordss[i]
+    listword = wordss[x]
     new_word_e = str(listword['English'])
     x += 1
     return new_word_e
