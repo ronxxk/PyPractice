@@ -1,0 +1,25 @@
+Date: 18/9/2026
+Time: 21:58
+Phone Number: +918087238506
+Message: Hello! This is an automated message sent using Python.
+--------------------
+Date: 18/9/2026
+Time: 22:4
+Phone Number: +918087238506
+Message: No need for an umbrella today!
+--------------------
+Date: 18/9/2026
+Time: 22:7
+Phone Number: +916268844712
+Message: No need for an umbrella today!
+--------------------
+Date: 18/9/2026
+Time: 22:11
+Phone Number: +918087238506
+Message: No need for an umbrella today!
+--------------------
+Date: 18/9/2026
+Time: 22:13
+Phone Number: +918087238506
+Message: No need for an umbrella today!
+--------------------
