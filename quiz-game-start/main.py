@@ -5,7 +5,8 @@ from quiz_brain import QuizBrain
 question_bank = []
 question__data = ""
 
-input("Choose your theme:\n")
+input("Choose your theme: (fun facts/history)\n")
+
 if input == "fun facts":
     question__data = question_data
 else:
