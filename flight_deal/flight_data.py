@@ -6,7 +6,7 @@ class FlightData:
     
     def return_data(self):
         if "error" in self.raw_data:
-            return f"API Error: {self.raw_data['error']}"
+            return f"Please Enter Valid Input."
 
         # Filter for valid dictionaries containing price data
         raw_flights = self.raw_data.get("best_flights", []) + self.raw_data.get("other_flights", [])
@@ -35,5 +35,4 @@ class FlightData:
             )
             lines.append(leg_info)
 
-        # Join all lines into a single multi-line string
         return "\n".join(lines)
