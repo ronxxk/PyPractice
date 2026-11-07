@@ -76,7 +76,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["type_"] = user_input
 
         await update.message.reply_text(
-            "Enter Your Username:"
+            "Enter Your Userame:"
         )
 
         return
